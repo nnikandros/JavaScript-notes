@@ -7,9 +7,10 @@ i= i+1 or i+=1 (Python)
 i-- is te equivalent to
 i = i-1 or i-=1 (PYthon)
 ```
-\" \" to escape from considering as a string
 
+`\" \" to escape from considering as a string`
 
+```
 \'	single quote
 \"	double quote
 \\	backslash
