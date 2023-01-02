@@ -43,7 +43,7 @@ string.toUpperCase()
 Extracting String Parts
 
 There are 3 methods for extracting a part of a string:
-```
+```js
     slice(start, end)
     substring(start, end)
     substr(start, length)
@@ -55,6 +55,12 @@ There are 3 methods for extracting a part of a string:
 ```js
  myArray.push(-) // puts the element at the end of the array ( .append() )
  myArray.pop() // is used to pop a value off of the end of an array.
+//Example :
+let x = [1,2,3]
+x.pop()
+
+let z= x.pop() // z has the value of 3
+
  myArray.shift() // It works just like .pop(), except it removes the first element instead of the last.
  myArray.unshift() // works exactly like .push(), but instead of adding the element at the end of the array, unshift() adds the element at the beginning of the array.
 myArray.includes(x) // Boolean return x is an entry in the array
@@ -115,7 +121,8 @@ function findGreaterOrEqual(a, b) {
   else {
     return "b is greater";
   }
-}```
+}
+```
 
 The above function can be re-written using multiple conditional operators:
 ```js
@@ -123,7 +130,8 @@ function findGreaterOrEqual(a, b) {
   return (a === b) ? "a and b are equal" 
     : (a > b) ? "a is greater" 
     : "b is greater";
-}```
+}
+```
 
 Another example:
 ```js
@@ -131,7 +139,8 @@ function checkSign(num) {
   return (num > 0)? "positive"
   : (num == 0) ? "zero"
   : "negative";
-}```js
+}
+```
 
 ## Arrow functions
 
