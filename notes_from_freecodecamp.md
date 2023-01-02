@@ -87,13 +87,14 @@ function findGreater(a, b) {
 ```
 
 This can be re-written using the conditional operator:
-```
+```js
 function findGreater(a, b) {
   return a > b ? "a is greater" : "b is greater or equal";
-}```
+}
+```
 
 Example : 
-```
+```js
 function checkEqual(a, b) {
   return a === b ? "Equal" : "Not Equal"
 }
