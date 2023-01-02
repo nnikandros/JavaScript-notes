@@ -70,7 +70,7 @@ myArray.includes(x) // Boolean return x is an entry in the array
 
 
 
-Use the Conditional (Ternary) Operator
+## Use the Conditional (Ternary) Operator
 
 The conditional operator, also called the ternary operator, can be used as a one line if-else expression.
 
@@ -100,3 +100,87 @@ function checkEqual(a, b) {
 }
 checkEqual(1, 2); // -> "Not Equal
 ```
+
+## Multiple ternary operator
+
+Consider the following function:
+```js
+function findGreaterOrEqual(a, b) {
+  if (a === b) {
+    return "a and b are equal";
+  }
+  else if (a > b) {
+    return "a is greater";
+  }
+  else {
+    return "b is greater";
+  }
+}```
+
+The above function can be re-written using multiple conditional operators:
+```js
+function findGreaterOrEqual(a, b) {
+  return (a === b) ? "a and b are equal" 
+    : (a > b) ? "a is greater" 
+    : "b is greater";
+}```
+
+Another example:
+```js
+function checkSign(num) {
+  return (num > 0)? "positive"
+  : (num == 0) ? "zero"
+  : "negative";
+}```js
+
+## Arrow functions
+
+```js
+const myFunc = () => {
+  const myVar = "value";
+  return myVar;
+}
+
+const magic = () => new Date(); 
+magic();
+
+const myConcat = (arr1,arr2) => arr1.concat(arr2); 
+
+console.log(myConcat([1, 2], [3, 4, 5]));
+```
+
+
+# Loops 
+
+- for loops
+```js
+const ourArray = [];
+for (let i = 0; i < 5; i++) {
+  ourArray.push(i);
+}```
+
+Silly way to iterate though an array:
+```js
+let x=[1,3,5,6,7]
+for (let i=0; i< x.length; i++){
+	console.log(x[i]);
+}```
+
+Remember that arrays have zero-based indexing, which means the last index of the array is length - 1. Our condition for this loop is i < arr.length, which stops the loop when i is equal to length. In this case the last iteration is i === 4 i.e. when i becomes equal to arr.length - 1 and outputs 6 to the console. Then i increases to 5, and the loop terminates because i < arr.length is false.
+
+` do.... while
+The next type of loop you will learn is called a do...while loop. It is called a do...while loop because it will first do one pass of the code inside the loop no matter what, and then continue to run the loop while the specified condition evaluates to true.
+```js
+const ourArray = [];
+let i = 0;
+
+do {
+  ourArray.push(i);
+  i++;
+} while (i < 5);
+```
+
+
+# Rest parameter and Spread Operator
+
+# Destructuring
