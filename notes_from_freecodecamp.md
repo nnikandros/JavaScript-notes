@@ -153,27 +153,30 @@ console.log(myConcat([1, 2], [3, 4, 5]));
 # Loops 
 
 - for loops
+
 ```js
 const ourArray = [];
 for (let i = 0; i < 5; i++) {
   ourArray.push(i);
-}```
+}
+```
 
 Silly way to iterate though an array:
 ```js
 let x=[1,3,5,6,7]
 for (let i=0; i< x.length; i++){
 	console.log(x[i]);
-}```
+}
+```
+There are much better ways to do this.
 
 Remember that arrays have zero-based indexing, which means the last index of the array is length - 1. Our condition for this loop is i < arr.length, which stops the loop when i is equal to length. In this case the last iteration is i === 4 i.e. when i becomes equal to arr.length - 1 and outputs 6 to the console. Then i increases to 5, and the loop terminates because i < arr.length is false.
 
-` do.... while
+- do.... while
 The next type of loop you will learn is called a do...while loop. It is called a do...while loop because it will first do one pass of the code inside the loop no matter what, and then continue to run the loop while the specified condition evaluates to true.
 ```js
 const ourArray = [];
 let i = 0;
-
 do {
   ourArray.push(i);
   i++;
