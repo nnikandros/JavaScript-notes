@@ -60,9 +60,8 @@ let x = [1,2,3]
 x.pop()
 
 let z= x.pop() // z has the value of 3
-
- myArray.shift() // It works just like .pop(), except it removes the first element instead of the last.
- myArray.unshift() // works exactly like .push(), but instead of adding the element at the end of the array, unshift() adds the element at the beginning of the array.
+myArray.shift() // It works just like .pop(), except it removes the first element instead of the last.
+myArray.unshift() // works exactly like .push(), but instead of adding the element at the end of the array, unshift() adds the element at the beginning of the array.
 myArray.includes(x) // Boolean return x is an entry in the array
 ```
 
@@ -181,6 +180,39 @@ There are much better ways to do this.
 
 Remember that arrays have zero-based indexing, which means the last index of the array is length - 1. Our condition for this loop is i < arr.length, which stops the loop when i is equal to length. In this case the last iteration is i === 4 i.e. when i becomes equal to arr.length - 1 and outputs 6 to the console. Then i increases to 5, and the loop terminates because i < arr.length is false.
 
+- for in
+
+```js
+for (key in object) {
+  // code block to be executed
+}
+```
+Example:
+const person = {fname:"John", lname:"Doe", age:25};
+
+let text = "";
+for (let x in person) {
+  text += person[x];
+} 
+
+Also it iterates over the indices of an array
+```js
+for (let index in array){
+	//code block
+}
+```
+
+```js
+let myarr = [1,2,3,4,5,6]
+for (let i in myarr){
+	console.log(i) // will output the indices of the array
+	console.log(myarr[i])
+}
+```
+
+
+
+- for of 
 - do.... while
 The next type of loop you will learn is called a do...while loop. It is called a do...while loop because it will first do one pass of the code inside the loop no matter what, and then continue to run the loop while the specified condition evaluates to true.
 ```js
@@ -241,11 +273,11 @@ console.log(arr2);
 Destructuring assignment is special syntax introduced in ES6, for neatly assigning values taken directly from an object.
 
 Consider the following ES5 code:
-```
+```js
 const user = { name: 'John Doe', age: 34 };
 const name = user.name;
 const age = user.age;
-```js
+```
 
 `name` would have a value of the string John Doe, and age would have the number 34.
 
@@ -253,7 +285,7 @@ Here's an equivalent assignment statement using the ES6 destructuring syntax:
 
 `const { name, age } = user;`
 
-IT creates two variables name and age with name = "John Doe" and age = 23
+IT creates two variables name and age with `name = "John Doe"` and `age = 23`
 
 ```js
 const HIGH_TEMPERATURES = {
@@ -261,7 +293,6 @@ const HIGH_TEMPERATURES = {
   today: 77,
   tomorrow: 80
 };
-
 const {today ,tomorrow } = HIGH_TEMPERATURES;
 console.log(today) // 77
 console.log(tomorrow) // 80
