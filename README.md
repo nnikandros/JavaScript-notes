@@ -1,0 +1,1 @@
+These are my notes for Javascript from the course on FreecodeCamp
