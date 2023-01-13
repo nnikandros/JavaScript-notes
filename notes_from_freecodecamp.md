@@ -188,12 +188,23 @@ for (key in object) {
 }
 ```
 Example:
+```js
 const person = {fname:"John", lname:"Doe", age:25};
 
 let text = "";
 for (let x in person) {
   text += person[x];
 } 
+
+let person = {
+    miko : "cat",
+    piko : "dog",
+    taro : "nikitas"
+}
+for (let key in person){
+    console.log(key); // miko, piko, taro
+}
+```
 
 Also it iterates over the indices of an array
 ```js
@@ -210,9 +221,28 @@ for (let i in myarr){
 }
 ```
 
+== Do not use for in over an Array if the index order is important.
+The index order is implementation-dependent, and array values may not be accessed in the order you expect.
+It is better to use a `for loop`, a `for of` loop, or `Array.forEach()` when the order is important. ==
+
+Example:
+suppose i have an array `arr = [a1,a2,a3,... an]` and i wand to make array ` [a1^1, a2^2, a3^3, ... , an^n]`
 
 
-- for of 
+```js
+function myfunction(element, index, array){
+     return array[index] = element**index; // or equivalently array[index]**index 
+}
+
+numbers.forEach(myfunction)
+```
+
+
+
+- for of
+
+
+ 
 - do.... while
 The next type of loop you will learn is called a do...while loop. It is called a do...while loop because it will first do one pass of the code inside the loop no matter what, and then continue to run the loop while the specified condition evaluates to true.
 ```js
