@@ -76,7 +76,7 @@ myArray.includes(x) // Boolean return x is an entry in the array
 
 
 
-## Use the Conditional (Ternary) Operator
+## Use of the Conditional (Ternary) Operator
 
 The conditional operator, also called the ternary operator, can be used as a one line if-else expression.
 
@@ -195,4 +195,116 @@ do {
 
 # Rest parameter and Spread Operator
 
+## Use the Rest Parameter with Function Parameters
+
+In order to help us create more flexible functions, ES6 introduces the rest parameter for function parameters. With the rest parameter, you can create functions that take a variable number of arguments. These arguments are stored in an array that can be accessed later from inside the function.
+
+Check out this code:
+```js
+function howMany(...args) {
+  return "You have passed " + args.length + " arguments.";
+}
+console.log(howMany(0, 1, 2));
+console.log(howMany("string", null, [1, 2, 3], { }));
+```
+The console would display the strings You have passed 3 arguments. and You have passed 4 arguments..
+
+The rest parameter eliminates the need to check the args array and allows us to apply `map()`, `filter()` and `reduce()` on the parameters array.
+```js
+const sum = (...args) => {
+  return args.reduce((a, b) => a + b, 0);
+}
+```
+
+## Spread operator
+
+ES6 introduces the spread operator, which allows us to expand arrays and other expressions in places where multiple parameters or elements are expected.
+
+```js
+const arr = [6, 89, 3, 45];
+const maximus = Math.max(...arr);
+```
+maximus would have a value of 89.
+```js
+const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+let arr2;
+arr2 = [...arr1];  // Change this line
+console.log(arr2);
+```
+
+
+
+
+
 # Destructuring
+
+Destructuring assignment is special syntax introduced in ES6, for neatly assigning values taken directly from an object.
+
+Consider the following ES5 code:
+```
+const user = { name: 'John Doe', age: 34 };
+const name = user.name;
+const age = user.age;
+```js
+
+`name` would have a value of the string John Doe, and age would have the number 34.
+
+Here's an equivalent assignment statement using the ES6 destructuring syntax:
+
+`const { name, age } = user;`
+
+IT creates two variables name and age with name = "John Doe" and age = 23
+
+```js
+const HIGH_TEMPERATURES = {
+  yesterday: 75,
+  today: 77,
+  tomorrow: 80
+};
+
+const {today ,tomorrow } = HIGH_TEMPERATURES;
+console.log(today) // 77
+console.log(tomorrow) // 80
+```
+
+## array destructiring
+```js
+// we have an array with the name and surname
+let arr = ["John", "Smith"]
+
+// destructuring assignment
+// sets firstName = arr[0]
+// and surname = arr[1]
+let [firstName, surname] = arr;
+
+alert(firstName); // John
+alert(surname);  // Smith
+```
+To extract the valew from an array we can do the following:
+```js
+const [a, b] = [1, 2, 3, 4, 5, 6];
+console.log(a, b);
+
+a // 1
+b // 2
+```
+and using commas 
+```js
+[a,b,,,c]
+
+a //1
+b// 2
+c // 2
+```
+
+Lastly we can Destructure arrays via spread (...)
+```js
+const [a,b, ...arr] = [1,2,3,4,5,6];
+a //1
+b// 2
+arr [3,4,5,6]
+```
+
+
+
+
