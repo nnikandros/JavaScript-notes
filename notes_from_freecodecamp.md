@@ -44,9 +44,9 @@ Extracting String Parts
 
 There are 3 methods for extracting a part of a string:
 ```js
-    slice(start, end)
-    substring(start, end)
-    substr(start, length)
+slice(start, end)
+substring(start, end)
+substr(start, length)
 ```
 
 
