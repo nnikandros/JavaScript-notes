@@ -317,6 +317,26 @@ function freezeObj() {
 const PI = freezeObj();
 ```
 
+- Making a list (array) of all the keys in an object
+
+`Object.keys(objectname) // objectname as variable`
+Example: 
+```js
+let dict = {
+  Alan: {
+    online: false
+  },
+  Jeff: {
+    online: true
+  },
+  Sarah: {
+    online: false
+  }
+}
+
+Object.keys(dict) \\ ["Alan", "Jeff", "Sarah]
+```
+
 
 # Loops 
 
@@ -732,6 +752,109 @@ myPromise.catch(error => {
   \\ code here
 });
 ```
+
+
+# OOP 
+
+For creation of objects see at Objects (JSON) section
+
+- Create a method for an object. See above also but there here again. See section: Write Concise Declarative Functions with ES6
+```js
+let duck = {
+  name: "Aflac",
+  numLegs: 2,
+  sayName: function() {return "The name of this duck is " + duck.name + ".";}
+};
+duck.sayName();
+```
+
+Or in new version we write
+```js
+let duck = {
+  name: "Aflac",
+  numLegs: 2,
+  sayName() {return "The name of this duck is " + duck.name + ".";}
+};
+duck.sayName();
+
+- `this` keyword 
+
+It is similar to the `self` keyword in Python. It refers to the attributes of an Object.
+
+```js
+let duck = {
+  name: "Aflac",
+  numLegs: 2,
+  sayName: function() {return `The name of this duck is  + ${this.name}.` ;}
+};
+```
+
+-Define a Constructor Function
+
+Constructors are functions that create new objects. They define properties and behaviors that will belong to the new object. Think of them as a blueprint for the creation of new objects.
+
+Here is an example of a constructor:
+```js
+function Dog(){
+  this.name = "john";
+  this.color = "red";
+  this.numLegs = 3;
+}
+```
+
+- Use a Constructor to Create Objects
+
+```js
+function Bird() {
+  this.name = "Albert";
+  this.color  = "blue";
+  this.numLegs = 2;
+}
+
+let blueBird = new Bird(); //a new instance of Bird, assigning it to a variable blueBird.
+```
+
+Now we have created a new instance of Bird but with
+```js
+blueBird.name // "Albert"
+blueBird.color // "blue"
+blueBird.numLegs // 2
+```
+
+We can change the attribrutes of the instane blueBird by assinging `blueBird.name = "fikos";`
+
+- Use a Constructor to Create Objects with arguments (Better version)
+
+```js
+function Bird(name, color) {
+  this.name = name;
+  this.color = color;
+  this.numLegs = 2;
+}
+
+let cardinal = new Bird("Bruce", "red");
+```
+numLegs has default value of 2.
+
+- Verify an Object's Constructor with instanceof
+
+`instanceof` 
+
+`blueBird instanceof Bird // true 
+
+*If an object is created without using a constructor, `instanceof` will verify that it is not an instance of that constructor*:
+```js
+let canary = {
+  name: "Mildred",
+  color: "Yellow",
+  numLegs: 2
+};
+
+canary instanceof Bird; // False
+``
+
+
+
 
 
 
