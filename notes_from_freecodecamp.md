@@ -851,10 +851,231 @@ let canary = {
 };
 
 canary instanceof Bird; // False
-``
+```
+
+-Own Properties
+
+Rember `.hasOwnProperty(-)` from above
+
+```js
+function Bird(name) {
+  this.name = name;
+  this.numLegs = 2;
+}
+
+let canary = new Bird("Tweety");
+let ownProps = [];
+// Only change code below this line
+for (let property in canary){
+    ownProps.push(property);
+}
+// ownProps // [ 'name', 'numLegs' ]
+```
+
+- Use Prototype Properties to Reduce Duplicate Code (for default attributes)
+
+A better way is to use the prototype of Bird. Properties in the prototype are shared among ALL instances of Bird. Here's how to add numLegs to the Bird prototype:
+
+`Bird.prototype.numLegs = 2;`
+
+Now *all* instances of Bird have the numLegs set at 2 property.
+
+Example:
+```js
+function Dog(name) {
+  this.name = name;
+}
+let beagle = new Dog("Snoopy");
+Dog.prototype.numLegs = 4;
+
+console.log(beagle.numLegs) // 4
+```
+
+- Iterate Over All Properties
+
+The following example: Iterate overy all properties. if its own Property put the property into an array. If not put it in another array
+```js
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype.numLegs = 4;
+
+let beagle = new Dog("Snoopy");
+
+let ownProps = [];
+let prototypeProps = [];
+
+// Only change code below this line
+for (let prop in beagle){
+  if (beagle.hasOwnProperty(prop)){
+    ownProps.push(prop);
+  } else {
+    prototypeProps.push(prop);
+  } 
+}
+```
+
+- Constructor Property
+There is a special constructor property located on the object instances duck and beagle that were created in the previous challenges:
+
+```js
+let duck = new Bird();
+let beagle = new Dog();
+
+console.log(duck.constructor === Bird); 
+console.log(beagle.constructor === Dog);
+```
+Note that the constructor property is a reference to the constructor function that created the instance. 
+The advantage of the constructor property is that it's possible to check for this property to find out what kind of object it is. 
+Here's an example of how this could be used:
+
+```js
+function joinBirdFraternity(candidate) {
+  if (candidate.constructor === Bird) {
+    return true;
+  } else {
+    return false;
+  }
+}
+```
+
+Or better :
+```js
+function joinBirdFraternity(candidate){
+	return candidate.constructor === Bird ;
+}
+```
+
+- Changing the prototype of a new Object
+
+A more efficient way is to set the prototype to a new object that already contains the properties. This way, the properties are added all at once:
+```js
+Bird.prototype = {
+  numLegs: 2, 
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log(`My name is ${this.name}` );
+  }
+};
+
+let blueBird = new Bird("piko");
+
+blueBird.eat();
+blueBird.describe();
+```
+- Understand Where an Object’s Prototype Comes From
+
+Just like people inherit genes from their parents, an object inherits its prototype directly from the constructor function that created it. For example, here the Bird constructor creates the duck object:
+```js
+function Bird(name) {
+  this.name = name;
+}
+
+let duck = new Bird("Donald");
+```
+
+duck inherits its prototype from the Bird constructor function. You can show this relationship with the isPrototypeOf method:
+
+`Bird.prototype.isPrototypeOf(duck);`
+
+This would return true.
+
+- Inherit Behaviors from a Supertype
 
 
+This and the next challenge will cover how to reuse the methods of Animal inside Bird and Dog without defining them again. 
+It uses a technique called inheritance. 
+This challenge covers the first step: make an instance of the supertype (or parent).
+ You already know one way to create an instance of Animal using the new operator:
 
+`let animal = new Animal();`
 
+There are some disadvantages when using this syntax for inheritance, which are too complex for the scope of this challenge.
+Instead, here's an alternative approach without those disadvantages:
+
+`let animal = Object.create(Animal.prototype);`
+
+`Object.create(obj)` creates a new object, and sets obj as the new object's prototype. Recall that the prototype is like the "recipe" for creating an object.
+ By setting the prototype of animal to be the prototype of Animal, you are effectively giving the animal instance the same "recipe" as any other instance of Animal.
+
+- Understand the Immediately Invoked Function Expression (IIFE)
+A common pattern in JavaScript is to execute a function as soon as it is declared:
+
+```js
+(function () {
+  console.log("Chirp, chirp!");
+})();
+```
+This is an anonymous function expression that executes right away, and outputs Chirp, chirp! immediately.
+
+Note that the function has no name and is not stored in a variable. 
+The two parentheses () at the end of the function expression cause it to be immediately executed or invoked. 
+This pattern is known as an *immediately invoked function expression or IIFE.*
+
+- Use Closure to Protect Properties Within an Object from Being Modified Externally
+
+bird.name = "Duffy";
+
+Therefore, any part of your code can easily change the name of bird to any value. 
+Think about things like passwords and bank accounts being easily changeable by any part of your codebase. That could cause a lot of issues.
+
+The simplest way to make this public property private is by creating a variable within the constructor function. 
+This changes the scope of that variable to be within the constructor function versus available globally. 
+This way, the variable can only be accessed and changed by methods also within the constructor function.
+
+```js
+function Bird() {
+  let hatchedEgg = 10;
+
+  this.getHatchedEggCount = function() { 
+    return hatchedEgg;
+  };
+}
+let ducky = new Bird();
+ducky.getHatchedEggCount();
+```
+
+- Use an IIFE to Create a Module
+An immediately invoked function expression (IIFE)
+ is often used to group related functionality into a single object or module. 
+For example, an earlier challenge defined two mixins:
+
+```js
+function glideMixin(obj) {
+  obj.glide = function() {
+    console.log("Gliding on the water");
+  };
+}
+function flyMixin(obj) {
+  obj.fly = function() {
+    console.log("Flying, wooosh!");
+  };
+}
+```
+
+Instead of this we can create a module that returns an Object (JSON)
+```js
+let motionModule = (function () {
+  return {
+    glideMixin: function(obj) {
+      obj.glide = function() {
+        console.log("Gliding on the water");
+      };
+    },
+    flyMixin: function(obj) {
+      obj.fly = function() {
+        console.log("Flying, wooosh!");
+      };
+    }
+  }
+})();
+
+console.log(motionModule) \\ { isCuteMixin: [Function: isCuteMixin],
+  singMixin: [Function: singMixin] }
+```
+So we can export it etc
 
 
