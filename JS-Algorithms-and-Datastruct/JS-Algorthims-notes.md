@@ -448,8 +448,19 @@ let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
 thatArray // ['basil', 'cilantro', 'sage', 'rosemary', 'parsley', 'thyme', 'coriander']
 ```
 
+- Copying lists with ... to keep the initial array unchanged!
 
+Consider the following exaple
+```js
+let x = [0,1];
+let y = x 
+y[0] = 1 // now y is the array [1,1]. But also x is [1,1] !!
+```
 
+To avoid this we use `let y = [...x]` 
+now changes to y are not reflected to x. See [cloning an array](https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/). See also
+
+[cloning](https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f6a/)
 
 
 # Destructuring
@@ -1078,4 +1089,99 @@ console.log(motionModule) \\ { isCuteMixin: [Function: isCuteMixin],
 ```
 So we can export it etc
 
+# Elements of Functional Programming
 
+- Avoid Mutations and Side Effects Using Functional Programming
+
+You can change One of the core principles of functional programming is to not change things. Changes lead to bugs. It's easier to prevent bugs knowing that your functions don't change anything, including the function arguments or any global variable.
+
+The previous example didn't have any complicated operations but the splice method changed the original array, and resulted in a bug.
+
+Recall that in functional programming, changing or altering things is called mutation, and the outcome is called a side effect. A function, ideally, should be a pure function, meaning that it does not cause any side effects.
+
+Let's try to master this discipline and not alter any variable or object in our code.
+
+For Example:
+```js
+Changing a gloval variable:
+// The global variable
+let fixedValue = 4;
+
+function incrementer() {
+return fixedValue + 1 ;
+}
+```
+
+- Refactor Global Variables Out of Functions
+
+Suppose we have a global variable that we like to keep unchanged. we can change it inside a function like so:
+```js
+const bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Moving Bodies",
+ "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
+
+function add(bookName) {
+  let copyofbookList = bookList
+  copyofbookList.push(bookName);
+  return copyofbookList;
+}
+```
+
+So copy it inside a function, change it inside the function and return the changed one.
+```js
+// The global variable
+const bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Moving Bodies", "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
+
+// Change code below this line
+function add(arr, bookName) {
+  let newarr = [...arr];
+  newarr.push(bookName);
+  return newarr;
+  
+  // Change code above this line
+}
+
+// Change code below this line
+function remove(arr ,bookName) {
+  let newarr = [...arr];
+  const book_index = newarr.indexOf(bookName);
+  if (book_index >= 0) {
+    newarr.splice(book_index, 1);
+    return newarr;
+
+    // Change code above this line
+    }
+}
+
+// better way to do this.
+
+function add(list, bookName) {
+  return [...list, bookName];
+}
+
+/* This function should remove a book from the list and return the list */
+// New parameters should come before the bookName one
+
+function remove(list, bookName) {
+  return list.filter(book => book !== bookName);
+}
+```
+
+- `  .map()`
+
+The map method iterates over each item in an array and 
+returns a new array containing the results of calling the callback function on each element. 
+It does this without mutating the original array.
+
+When the callback is used, it is passed three arguments. 
+The first argument is the current element being processed. 
+The second is the index of that element and the third is the array upon which the map method was called.
+
+See below for an example using the map method on the users array to return a new array containing only the names of the users as elements. 
+For simplicity, the example only uses the first argument of the callback.
+
+```js
+let arr = [1,2,3];
+arr.map( (element, index, array) => element +1  ) 
+
+arr.map( (element, index, array) => element + index  ) 
+```
