@@ -1120,7 +1120,7 @@ const bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Mo
  "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
 
 function add(bookName) {
-  let copyofbookList = bookList
+  let copyofbookList = [...bookList] // copyofbookList = bookList is not correct because changes in copy would appear in bookList
   copyofbookList.push(bookName);
   return copyofbookList;
 }
