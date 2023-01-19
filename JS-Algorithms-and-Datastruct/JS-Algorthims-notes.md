@@ -1213,3 +1213,89 @@ Array.prototype.myMap = function(callback) {
 `filter` calls a function on each element of an array and returns a new array containing only the elements for which that function returns a truthy value 
 that is, a value which returns true if passed to the Boolean() constructor. 
 In other words, it filters the array, based on the function passed to it. Like map, it does this without needing to modify the original array.
+
+- `.concat(-)`
+
+
+
+Concatenation means to join items end to end. JavaScript offers the concat method for both strings and arrays that work in the same way. For arrays, the method is called on one, then another array is provided as the argument to concat, which is added to the end of the first array. It returns a new array and does not mutate either of the original arrays. Here's an example:
+
+`[1, 2, 3].concat([4, 5, 6]);`
+
+The returned array would be `[1, 2, 3, 4, 5, 6]`.
+
+- Add Elements to the End of an Array Using concat Instead of push
+
+Functional programming is all about creating and using non-mutating functions.
+
+The last challenge introduced the concat method as a way to merge arrays into a new array without mutating the original arrays. Compare concat to the push method. push adds items to the end of the same array it is called on, which mutates that array. Here's an example:
+```js
+const arr = [1, 2, 3];
+arr.push(4, 5, 6);
+```
+arr would have a modified value of `[1, 2, 3, 4, 5, 6]`, which is not the functional programming way.
+
+`concat` offers a way to merge new items to the end of an array without any mutating side effects.
+
+
+- Use the every Method to Check that Every Element in an Array Meets a Criteria
+
+The `every` method works with arrays to check if every element passes a particular test. It returns a Boolean value - `true` if all values meet the criteria, `false` if not.
+
+```js
+const numbers = [1, 5, 8, 0, 10, 11];
+
+numbers.every( (element) => element < 10   ) // false
+```
+
+- Use the some Method to Check that Any Elements in an Array Meet a Criteria
+
+The some method works with arrays to check if any element passes a particular test. It returns a Boolean value - true if any of the values meet the criteria, false if not.
+
+For example, the following code would check if any element in the numbers array is less than 10:
+```js
+const numbers = [10, 50, 8, 220, 110, 11];
+
+numbers.some( a => a < 10  ) // true
+```
+
+- Introduction to Currying and Partial Application
+
+The arity of a function is the number of arguments it requires. Currying a function means to convert a function of N arity into N functions of arity 1.
+
+In other words, it restructures a function so it takes one argument, then returns another function that takes the next argument, and so on.
+
+Here's an example:
+```js
+function unCurried(x, y) {
+  return x + y;
+}
+
+function curried(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+
+const curried = x => y => x + y
+
+curried(1)(2)
+
+curried(1)(2) // would return 3.
+```
+This is useful in your program if you can't supply all the arguments to a function at one time. You can save each function call into a variable, which will hold the returned function reference that takes the next argument when it's available. Here's an example using the curried function in the example above:
+```js
+const funcForY = curried(1);
+console.log(funcForY(2)); // 3
+```
+Similarly, partial application can be described as applying a few arguments to a function at a time and returning another function that is applied to more arguments. Here's an example:
+```js
+function impartial(x, y, z) {
+  return x + y + z;
+}
+
+const partialFn = impartial.bind(this, 1, 2);
+partialFn(10); // 13
+```
+
+
