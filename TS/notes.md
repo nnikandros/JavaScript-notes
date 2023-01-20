@@ -39,3 +39,76 @@ function trueOrFalse(value: boolean): boolean {
   return 'false'; // Typescript Error: Type 'string' is not assignable to type 'boolean'.
 }
 ```
+
+# Complex types
+
+- Arrays
+
+The TypeScript type annotation for array types is fairly straightforward: we put [] after the element type. In this code, names is an Array that can only contain strings:
+
+`let names: string[] = ['Danny', 'Samantha'];`
+
+or
+
+`let names: Array<string> = ['Danny', 'Samantha'];`
+
+- Tuples
+
+Tuples have **fixed length**
+
+```js
+let mytuple : [number, number] = [1,2]
+mytuple[2] = 3 // error
+```
+
+`let dogTup: [string, string, string, string] = ['dog', 'brown fur', 'curly tail', 'sad eyes'];`
+
+`dogTup` is a tuple hence we cannot add more stuff. To make it into array use do
+
+```js
+let myArr = dogTup.concat("");
+myArr[50] = "not a dog"
+console.log(myArr);
+```js
+
+
+- Rest parameters
+
+```js
+function smush(firstString, ...otherStrings: string[]){
+  /*rest of function*/
+}
+```
+
+- Enums
+
+[Enums type](https://www.typescriptlang.org/docs/handbook/enums.html)
+
+- Type Aliases
+
+
+```js
+let aCompany: { 
+  companyName: string, 
+  boss: { name: string, age: number }, 
+  employees: { name: string, age: number }[], 
+  employeeOfTheMonth: { name: string, age: number },  
+  moneyEarned: number
+};
+```
+We can simplify the above by doind the following
+
+```js
+type Person = {name:string, age:number}
+let aCompany: {
+  companyName: string, 
+  boss: Person, 
+  employees: Person[], 
+  employeeOfTheMonth: Person,  
+  moneyEarned: number
+};
+```
+
+
+
+
