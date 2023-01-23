@@ -677,14 +677,13 @@ export { add }; // exporting multiple functions
 When you export a variable or function, you can import it in another file and use it without having to rewrite the code. You can export multiple things by repeating the first example for each thing you want to export, or by placing them all in the export statement of the second example, like this:
 `export { add, subtract };`
 
-
-
-import allows you to choose which parts of a file or module to load. In the previous lesson, the examples exported add from the math_functions.js file. Here's how you can import it to use in another file:
-import { add } from './math_functions.js';
+## Import
+`import` allows you to choose which parts of a file or module to load. In the previous lesson, the examples exported add from the math_functions.js file. Here's how you can import it to use in another file:
+`import { add } from './math_functions.js';`
 
 Here, import will find add in math_functions.js, import just that function for you to use, and ignore the rest. The ./ tells the import to look for the math_functions.js file in the same folder as the current file. The relative file path (./) and file extension (.js) are required when using import in this way.
 You can import more than one item from the file by adding them in the import statement like this:
-import { add, subtract } from './math_functions.js';
+`import { add, subtract } from './math_functions.js';`
 
 ## Use * to import everything from a module
 
