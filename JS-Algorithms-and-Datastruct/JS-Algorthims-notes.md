@@ -683,17 +683,7 @@ When you export a variable or function, you can import it in another file and us
 
 Here, import will find add in math_functions.js, import just that function for you to use, and ignore the rest. The ./ tells the import to look for the math_functions.js file in the same folder as the current file. The relative file path (./) and file extension (.js) are required when using import in this way.
 You can import more than one item from the file by adding them in the import statement like this:
-`import { add, subtract } from './math_functions';`
-
-### Exporting default
-
-Consider a file addition.js with the followig
-
-export default function myaddition(a,b){return a+b}
-
-then we can import it with : `import add from "./addition" ` or ` import myaddition from "./addition" 
-
-
+`import { add, subtract } from './math_functions.js';`
 
 ## Use * to import everything from a module
 
@@ -1194,6 +1184,23 @@ arr.map( (element, index, array) => element +1  )
 
 arr.map( (element, index, array) => element + index  ) 
 ```
+Example: 
+```js
+const array1 = [1, 4, 9, 16];
+
+// Pass a function to map
+const map1 = array1.map(x => x * 2);
+
+console.log(map1);
+// Expected output: Array [2, 8, 18, 32]
+
+///
+const map1 = array1.map( x => [x, 2*x]    )
+
+
+```
+
+
 
 - Implement map on a Prototype
 
@@ -1308,3 +1315,19 @@ partialFn(10); // 13
 ```
 
 
+# Classes
+
+
+```js
+class MyClass {
+    constructor(x,y){
+        this.x=x;
+        this.y=y;
+    }
+    
+    // Method
+     showx(){
+        return this.x
+    }
+}
+```
