@@ -84,6 +84,29 @@ function destroyer(arr, ...valsToRemove) {  // use the spread operator to unpack
 }
 ```
 
+# DNA Pairing
+
+```js
+function pairElement(str) {
+  const pairs = {
+    A:"T",
+    T:"A",
+    C:"G",
+    G:"C"
+  }
+  let splited = str.split("")
+  for (let index in splited){
+    splited[index] = [splited[index], pairs[splited[index]]]
+  }
+  return splited;
+}
+
+// a bit more functiona and better
+let splited = str.split("");
+  return splited.map( n => [n,pairs[n]] ) 
+
+pairElement("GCG");
+```
 
 
 

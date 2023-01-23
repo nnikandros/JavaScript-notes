@@ -683,7 +683,17 @@ When you export a variable or function, you can import it in another file and us
 
 Here, import will find add in math_functions.js, import just that function for you to use, and ignore the rest. The ./ tells the import to look for the math_functions.js file in the same folder as the current file. The relative file path (./) and file extension (.js) are required when using import in this way.
 You can import more than one item from the file by adding them in the import statement like this:
-`import { add, subtract } from './math_functions.js';`
+`import { add, subtract } from './math_functions';`
+
+### Exporting default
+
+Consider a file addition.js with the followig
+
+export default function myaddition(a,b){return a+b}
+
+then we can import it with : `import add from "./addition" ` or ` import myaddition from "./addition" 
+
+
 
 ## Use * to import everything from a module
 
