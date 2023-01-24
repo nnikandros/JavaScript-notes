@@ -52,9 +52,11 @@ substr(start, length)
 ```
 
 
-# Array Methods
+# Arrays
 
--Basic methods of putting and removing items
+## Array methods
+
+- Basic methods of putting and removing items
 
 `myArray.push(-)` puts the element at the end of the array ( .append() )
 ```js
@@ -110,7 +112,22 @@ let newarr = arr.slice(2,4); \\ [warm, sunny]
 - `myArray.reverse()`
 Self-explanatory
 
-- Simple stuff using arrays
+- `myArray.indexOf(x)`
+
+Returns the index that the element `x` appears first. Example
+```js
+let myarr = [1,2,3,4,5];
+myarr.indexOf(4) // outputs 3 
+```
+
+If the `x` is not included in myarr it returns `-1`. Lastly if there are duplicates in myarr, the index of the duplicate will return the idnex of the first occurance.! useful for removing 
+duplicates, see below.
+
+
+
+ 
+
+## Simple stuff using arrays
 
 1. Finding how many times an elements occurs in an array
 
@@ -131,7 +148,25 @@ Or equivalently
 arr.filter(x => x === SearchValue).length; // filter gives an array with all the elements in arr with the condition that the function x => x === SearchValue is true. Then .length counts the length of the array. 
 ```
 
+2. Remove duplicates
 
+arr.filter((item,index) => arr.indexOf(item) === index); // a duplicate's index is not it's own
+
+Another way is the following 
+```js
+let chars = ['A', 'B', 'A', 'C', 'B'];
+
+let uniqueChars = []; //make an empty list
+chars.forEach((element) => {
+    if (!uniqueChars.includes(element)) {
+        uniqueChars.push(element); // if the element is not inclused in the uniqueChars list put it. otherwise do nothing.
+    }
+});
+```
+
+Third way is to make it a set
+
+`let arrtoset = new Set(arr);` 
 
 
 
@@ -1344,7 +1379,7 @@ The dog chased the cat, you could use the following regular expression: /the/. N
 
 JavaScript has multiple ways to use regexes. 
 One way to test a regex is using the .test() method. The `.test()` *method takes the regex, applies it to a string (which is placed inside the parentheses), 
-and returns true or false if your pattern finds something or not*.
+and returns `boolean`, that is `true` or `false` if your pattern finds something or not*.
 ```js
 let testStr = "freeCodeCamp";
 let testRegex = /Code/;
@@ -1398,7 +1433,100 @@ let fccRegex = /freecodecamp/i; // Change this line
 let result = fccRegex.test(myString);
 ```
 
+## Mathch method
 
+To use the `.match()` method, apply the method on a string and pass in the regex inside the parentheses.
 
+Here's an example:
+```js
+"Hello, World!".match(/Hello/);
+//////
+let ourStr = "Regular expressions";
+let ourRegex = /expressions/;
+ourStr.match(ourRegex);
+```
+
+`.match()` returns an array. At first index the the word that is extracted, second entry the starting index. If nothing is found `null` is returned.
+
+## Find More Than the First Match
+
+So far, you have only been able to extract or search a pattern once.
+```js
+let testStr = "Repeat, Repeat, Repeat";
+let ourRegex = /Repeat/;
+testStr.match(ourRegex);
+```
+Here match would return `["Repeat"]`.
+
+To search or extract a pattern more than once, you can use the global search flag: g.
+```js
+let repeatRegex = /Repeat/g;
+testStr.match(repeatRegex);
+```
+
+## Match Anything with Wildcard Period
+
+The wildcard character `.` will match any one character. The wildcard is also called dot and period. You can use the wildcard character just like any other character in the regex. 
+For example, if you wanted to match hug, huh, hut, and hum, you can use the regex /hu./ to match all four words.
+Example `let regex = /.un/`
+
+with match words like ` "run", "sun", "hun", "fun",` ...
+
+## Match Single Character with Multiple Possibilities
+
+ou can search for a literal pattern with some flexibility with character classes. 
+Character classes allow you to define a group of characters you wish to match by placing them inside square ([ and ]) brackets.
+
+For example, you want to match bag, big, and bug but not bog. 
+You can create the regex `/b[aiu]g/` to do this. The `[aiu]` is the character class that will only match the characters `a`, `i`, or `u`.
+
+## Match Letters of the Alphabet in a Range
+
+Inside a character set, you can define a range of characters to match using a hyphen character: -.
+
+For example, to match lowercase letters a through e you would use [a-e].
+
+We can also use it for numbers for example ` let myreg = /[0-9]/` will match any numbers between 0 and 9 (including both)
+
+## Match Single Characters Not Specified or negate 
+
+o create a negated character set, you place a caret character (^) after the opening bracket and before the characters you do not want to match.
+
+For example, /[^aeiou]/gi matches all characters that are not a vowel. 
+Note that characters like ., !, [, @, / and white space are matched - the negated vowel character set only excludes the vowel characters.
+
+Example : `let myRegex = /[^aieou^0-9]/gi;` matches all char that are not vowels and not numbers.
+
+## Match Characters that Occur One or More Times
+
+You can use the + character to check if that is the case. Remember, the character or pattern has to be present consecutively. That is, the character has to repeat one after the other.
+
+For example, `/a+/g` would find one match in abc and return `["a"]`. Because of the +, 
+it would also find a single match in aabc and return `["aa"]`.
+
+If it were instead checking the string `"abab"`, it would find two matches and return `["a", "a"]` because the a characters are not in a row - 
+there is a b between them. Finally, since there is no a in the string bcd, it wouldn't find a match.
+
+```js
+let difficultSpelling = "Mississippi";
+let myRegex = /s+/g; // Change this line
+let result = difficultSpelling.match(myRegex); // ["ss", "ss"]
+```
+
+## Match Characters that Occur Zero or More Times
+
+There's also an option that matches characters that occur zero or more times.
+
+The character to do this is the asterisk or star: *.
+```js
+let soccerWord = "gooooooooal!";
+let gPhrase = "gut feeling";
+let oPhrase = "over the moon";
+let goRegex = /go*/;
+soccerWord.match(goRegex);
+gPhrase.match(goRegex);
+oPhrase.match(goRegex);
+```
+In order, the three match calls would return the values `["goooooooo"]`, `["g"]`, and `null`.
 
 
