@@ -1352,6 +1352,25 @@ partialFn(10); // 13
 
 # Classes
 
+Class methods are created with the same syntax as object methods.
+
+Use the keyword class to create a class.
+
+Always add a constructor() method.
+
+
+```js
+class ClassName {
+  constructor() { ... }
+  method_1() { ... }
+  method_2() { ... }
+  method_3() { ... }
+}
+```
+
+
+
+
 
 ```js
 class MyClass {
@@ -1366,6 +1385,35 @@ class MyClass {
     }
 }
 ```
+
+## Class inheritance
+
+```js
+class Car {
+  constructor(brand) {
+    this.brant = brand;
+  }
+  present() {
+    return 'I have a ' + this.brand;
+  }
+}
+
+class Model extends Car {
+  constructor(brand, mod) {
+    super(brand);
+    this.model = model;
+  }
+  show() {
+    return this.present() + ', it is a ' + this.model;
+  }
+}
+
+let myCar = new Model("Ford", "Mustang");
+document.getElementById("demo").innerHTML = myCar.show();
+```
+The super() method refers to the parent class.
+
+By calling the super() method in the constructor method, we call the parent's constructor method and gets access to the parent's properties and methods.
 
 
 # Regex
@@ -1433,7 +1481,7 @@ let fccRegex = /freecodecamp/i; // Change this line
 let result = fccRegex.test(myString);
 ```
 
-## Mathch method
+## Match method
 
 To use the `.match()` method, apply the method on a string and pass in the regex inside the parentheses.
 
