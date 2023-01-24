@@ -1090,7 +1090,7 @@ So we can export it etc
 
 # Elements of Functional Programming
 
-- Avoid Mutations and Side Effects Using Functional Programming
+## Avoid Mutations and Side Effects Using Functional Programming
 
 You can change One of the core principles of functional programming is to not change things. Changes lead to bugs. It's easier to prevent bugs knowing that your functions don't change anything, including the function arguments or any global variable.
 
@@ -1111,7 +1111,7 @@ return fixedValue + 1 ;
 }
 ```
 
-- Refactor Global Variables Out of Functions
+## Refactor Global Variables Out of Functions
 
 Suppose we have a global variable that we like to keep unchanged. we can change it inside a function like so:
 ```js
@@ -1165,7 +1165,7 @@ function remove(list, bookName) {
 }
 ```
 
-- `  .map()`
+## `  .map()` very important
 
 The map method iterates over each item in an array and 
 returns a new array containing the results of calling the callback function on each element. 
@@ -1202,7 +1202,7 @@ const map1 = array1.map( x => [x, 2*x]    )
 
 
 
-- Implement map on a Prototype
+### Implement map on a Prototype
 
 
 
@@ -1224,13 +1224,13 @@ Array.prototype.myMap = function(callback) {
 };
 ```
 
-- `.filter()`
+## `.filter()` very important
 
 `filter` calls a function on each element of an array and **returns a new array** containing only the elements for which that function returns a truthy value 
 that is, a value which returns true if passed to the Boolean() constructor. 
 In other words, it filters the array, based on the function passed to it. Like map, it does this without needing to modify the original array.
 
-- `.concat(-)`
+## `.concat(-)`
 
 
 
@@ -1254,7 +1254,7 @@ arr would have a modified value of `[1, 2, 3, 4, 5, 6]`, which is not the functi
 `concat` offers a way to merge new items to the end of an array without any mutating side effects.
 
 
-- Use the every Method to Check that Every Element in an Array Meets a Criteria
+## Use the every Method to Check that Every Element in an Array Meets a Criteria
 
 The `every` method works with arrays to check if every element passes a particular test. It returns a Boolean value - `true` if all values meet the criteria, `false` if not.
 
@@ -1264,7 +1264,7 @@ const numbers = [1, 5, 8, 0, 10, 11];
 numbers.every( (element) => element < 10   ) // false
 ```
 
-- Use the some Method to Check that Any Elements in an Array Meet a Criteria
+## Use the some Method to Check that Any Elements in an Array Meet a Criteria
 
 The some method works with arrays to check if any element passes a particular test. It returns a Boolean value - true if any of the values meet the criteria, false if not.
 
@@ -1275,7 +1275,7 @@ const numbers = [10, 50, 8, 220, 110, 11];
 numbers.some( a => a < 10  ) // true
 ```
 
-- Introduction to Currying and Partial Application
+## Introduction to Currying and Partial Application
 
 The arity of a function is the number of arguments it requires. Currying a function means to convert a function of N arity into N functions of arity 1.
 
@@ -1331,3 +1331,43 @@ class MyClass {
     }
 }
 ```
+
+
+# Regex
+
+## Test method
+
+Regular expressions are used in programming languages to match parts of strings. You create patterns to help you do that matching.
+
+If you want to find the word the in the string 
+The dog chased the cat, you could use the following regular expression: /the/. Notice that quote marks are not required within the regular expression.
+
+JavaScript has multiple ways to use regexes. 
+One way to test a regex is using the .test() method. The `.test()` *method takes the regex, applies it to a string (which is placed inside the parentheses), 
+and returns true or false if your pattern finds something or not*.
+```js
+let testStr = "freeCodeCamp";
+let testRegex = /Code/;
+testRegex.test(testStr); // outputs true
+```
+
+## Match Literal Strings
+
+In the last challenge, you searched for the word Hello using the regular expression /Hello/. That regex searched for a literal match of the string Hello. Here's another example searching for a literal match of the string Kevin:
+```js
+let testStr = "Hello, my name is Kevin.";
+let testRegex = /Kevin/;
+testRegex.test(testStr);
+```
+This test call will return true.
+
+Any other forms of Kevin will not match. For example, the regex /Kevin/ will **not** match kevin or KEVIN.
+```js
+let wrongRegex = /kevin/;
+wrongRegex.test(testStr);
+```
+This test call will return `false`.
+
+
+
+
