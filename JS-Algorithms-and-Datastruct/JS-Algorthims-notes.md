@@ -375,8 +375,9 @@ Object.keys(dict) \\ ["Alan", "Jeff", "Sarah]
 
 # Loops 
 
-- for loops
+## Flavors of the for loop
 
+### Vanilla 
 ```js
 const ourArray = [];
 for (let i = 0; i < 5; i++) {
@@ -393,9 +394,49 @@ for (let i=0; i< x.length; i++){
 ```
 There are much better ways to do this.
 
-Remember that arrays have zero-based indexing, which means the last index of the array is length - 1. Our condition for this loop is i < arr.length, which stops the loop when i is equal to length. In this case the last iteration is i === 4 i.e. when i becomes equal to arr.length - 1 and outputs 6 to the console. Then i increases to 5, and the loop terminates because i < arr.length is false.
+Remember that arrays have zero-based indexing, which means the last index of the array is length - 1. Our condition for this loop is i < arr.length, 
+which stops the loop when i is equal to length. In this case the last iteration is i === 4 i.e. when i becomes equal to arr.length - 1 and outputs 6 to the console. Then i increases to 5, and the loop terminates because i < arr.length is false.
 
-- do.... while
+### for ... in ...
+for... in... loops through the keys of an iterator. Here iterator could be a string, an array and an object.
+
+```js
+for (index in iterator){
+	//code here
+}
+```
+
+Examples:
+```js
+let word = "malakas"
+for (index in word){
+	console.log(index)}
+0
+1
+2
+3
+4
+5
+6
+```
+Similarly for an array, `for... in` loops through the indices of the array and for an object it loops through the keys of the object. 
+Example:
+```js
+let x = {kiko: 5,
+    piko:6,
+    fiko:7
+}
+for (let key in x){
+	console.log( `${key}: ${x[key]}`)
+}
+```
+
+
+
+
+
+
+# do.... while
 The next type of loop you will learn is called a do...while loop. It is called a do...while loop because it will first do one pass of the code inside the loop no matter what, and then continue to run the loop while the specified condition evaluates to true.
 ```js
 const ourArray = [];
@@ -1411,9 +1452,9 @@ class Model extends Car {
 let myCar = new Model("Ford", "Mustang");
 document.getElementById("demo").innerHTML = myCar.show();
 ```
-The super() method refers to the parent class.
+The `super()` method refers to the parent class.
 
-By calling the super() method in the constructor method, we call the parent's constructor method and gets access to the parent's properties and methods.
+By calling the `super()` method in the constructor method, we call the parent's constructor method and gets access to the parent's properties and methods.
 
 
 # Regex
