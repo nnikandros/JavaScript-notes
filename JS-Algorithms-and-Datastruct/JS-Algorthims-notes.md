@@ -150,7 +150,7 @@ arr.filter(x => x === SearchValue).length; // filter gives an array with all the
 
 2. Remove duplicates
 
-arr.filter((item,index) => arr.indexOf(item) === index); // a duplicate's index is not it's own
+`arr.filter((item,index) => arr.indexOf(item) === index); // a duplicate's index is not it's own`
 
 Another way is the following 
 ```js
