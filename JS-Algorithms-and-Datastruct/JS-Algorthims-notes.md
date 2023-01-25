@@ -431,7 +431,16 @@ for (let key in x){
 }
 ```
 
+### for... of...
+for String and array, for...of loops through the *values*
 
+```js
+let myarr = [1,2,3,4];
+for (element of myarr){
+	console.log(element);
+		} 
+// 1,2,3,4
+```
 
 
 
