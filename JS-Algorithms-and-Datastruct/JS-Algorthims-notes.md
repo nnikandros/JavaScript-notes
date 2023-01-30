@@ -124,6 +124,26 @@ myarr.indexOf(4); // outputs 3
 If the `x` is not included in myarr it returns `-1`. Lastly if there are duplicates in myarr, the index of the duplicate will return the idnex of the first occurance.! useful for removing
 duplicates, see below.
 
+- `myArray.find(callbback)`
+
+More specific `find((element, index, array) => { /* … */ })`
+
+The `.find()` method returns the first element in the provided array that satisfies the provided testing function. If no values satisfy the testing function, undefined is returned.
+
+```js
+let x = [1, 3, 4, 5, 5, 6, 6];
+
+x.find((element) => element > 4); // outputs 5
+```
+
+Hints:
+
+- If you need the index of the found element in the array, use findIndex().
+- If you need to find the index of a value, use indexOf(). (It's similar to findIndex(), but checks each
+  elementfor equality with the value instead of using a testing function.)
+- If you need to find if a value exists in an array, use `includes()`. Again, it checks each element for equality with the value instead of using a testing function.
+- If you need to find if any element satisfies the provided testing function, use some().
+
 ## Simple stuff using arrays
 
 1. Finding how many times an elements occurs in an array
@@ -768,6 +788,8 @@ console.log(bicycle.gear);
 
 # Export, Import
 
+This section works for ES6 and later. Need a new one for commonJS and Node
+
 Imagine a file called math_functions.js that contains several functions related to mathematical operations. One of them is stored in a variable, add, that takes in two numbers and returns their sum. You want to use this function in several different JavaScript files. In order to share it with these other files, you first need to export it.
 
 ```js
@@ -800,8 +822,8 @@ You can import more than one item from the file by adding them in the import sta
 
 ## Use \* to import everything from a module
 
-Suppose you have a file and you wish to import all of its contents into the current file. This can be done with the import _ as syntax. Here's an example where the contents of a file named math_functions.js are imported into a file in the same directory:
-import _ as myMathModule from "./math_functions.js";
+Suppose you have a file and you wish to import all of its contents into the current file. This can be done with the `import * as syntax`. Here's an example where the contents of a file named math_functions.js are imported into a file in the same directory:
+`import * as myMathModule from "./math_functions.js";`
 
 The above import statement will create an object called myMathModule. This is just a variable name, you can name it anything. The object will contain all of the exports from math_functions.js in it, so you can access the functions like you would any other object property.
 
